@@ -1,0 +1,12 @@
+<div class="card" *ngIf="currentCard$ | async as card">
+    <div class="card-panel" [style.background-image]="'url(' + card.image + ')'">
+        <div class="description">
+            <div class="name" [attr.data-id]="card.id">{{ card.name }}</div>
+            <div class="about">{{ card.description }}</div>
+        </div>
+    </div>
+    <div class="btn-panel">
+        <button class="like" [disabled]="!card.id" mat-raised-button (click)="like(card)">Like</button>
+        <button class="dislike" [disabled]="!card.id" mat-raised-button (click)="dislike(card)">Dislike</button>
+    </div>
+</div>
