@@ -2,6 +2,24 @@
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 13.3.0.
 
+## Tests launching
+
+For unit tests launch
+
+```sh
+ng test
+```
+
+For e2e tests install protractor and launch
+
+```sh
+webdriver-manager update
+
+webdriver-manager start
+
+protractor e2e/protractor.conf.js
+```
+
 ## Development server
 
 Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.

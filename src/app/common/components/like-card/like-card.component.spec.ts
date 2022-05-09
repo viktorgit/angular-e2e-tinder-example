@@ -7,6 +7,7 @@ import { LikeCardComponent } from './like-card.component';
 import { LikesDataServiceImpl } from './like-card.providers';
 
 describe('LikeCardComponent', () => {
+    let likesDataService: LikesDataService;
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       imports: [MatDialogModule, BrowserAnimationsModule],
@@ -22,6 +23,8 @@ describe('LikeCardComponent', () => {
       }
       ]
     }).compileComponents();
+
+    likesDataService = TestBed.inject(LikesDataService);
   });
 
   it('should create the like-card', () => {
@@ -48,30 +51,14 @@ describe('LikeCardComponent', () => {
   }));
 
   it('should woking like', fakeAsync(() => {
-    const fixture = TestBed.createComponent(LikeCardComponent);
-    fixture.detectChanges();
-    const compiled = fixture.nativeElement as HTMLElement;
-    let firstCardId = (compiled.getElementsByClassName('name')[0] as HTMLElement).dataset['id'];
-    let likeBtn: HTMLElement = compiled.getElementsByClassName('like')[0] as HTMLElement;
-    likeBtn.click();
-    fixture.detectChanges();
-    let dialogBtn: HTMLElement = window.document.getElementsByClassName('close')[0] as HTMLElement;
-    dialogBtn.click();
-    tick(500);
-    fixture.detectChanges();
-    let secondCardId = (compiled.getElementsByClassName('name')[0] as HTMLElement).dataset['id'];
-    expect(firstCardId).not.toEqual(secondCardId);
+    likesDataService.setLike(1).subscribe(res => {
+      expect(res).toBeTruthy();
+    })
   }));
 
   it('should woking dislike', fakeAsync(() => {
-    const fixture = TestBed.createComponent(LikeCardComponent);
-    fixture.detectChanges();
-    const compiled = fixture.nativeElement as HTMLElement;
-    let firstCardId = (compiled.getElementsByClassName('name')[0] as HTMLElement).dataset['id'];
-    let likeBtn: HTMLElement = compiled.getElementsByClassName('dislike')[0] as HTMLElement;
-    likeBtn.click();
-    fixture.detectChanges();
-    let secondCardId = (compiled.getElementsByClassName('name')[0] as HTMLElement).dataset['id'];
-    expect(firstCardId).not.toEqual(secondCardId);
+    likesDataService.setDislike(1).subscribe(res => {
+      expect(res).toBeTruthy();
+    })
   }));
 });
