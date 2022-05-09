@@ -10,7 +10,7 @@ For unit tests launch
 ng test
 ```
 
-For e2e tests install protractor and launch
+For e2e tests install protractor, serve app and launch
 
 ```sh
 webdriver-manager update
